@@ -24,7 +24,7 @@ export default function CertiFlowProPage() {
           </div>
           <div className="rounded-xl border border-slate-800 bg-slate-900/40 p-4">
             <p className="text-xs uppercase tracking-wider text-slate-400">Timeline</p>
-            <p className="text-lg font-semibold mt-2">2025</p>
+            <p className="text-lg font-semibold mt-2">2026</p>
           </div>
         </section>
 

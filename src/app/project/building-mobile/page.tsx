@@ -42,8 +42,7 @@ export default function BuildingMobilePage() {
         <section className="rounded-xl border border-slate-800 bg-slate-900/40 p-6">
           <h2 className="text-xl font-bold mb-4">Highlights</h2>
           <ul className="space-y-3 text-slate-300">
-            <li className="leading-relaxed">• 目前正在規劃核心功能與畫面流程。</li>
-            <li className="leading-relaxed">• 採用 MVVM 架構，方便後續擴充與測試。</li>
+            <li className="leading-relaxed">• 將傳統架構重構成MVVM架構，方便後續擴充與測試。</li>
             <li className="leading-relaxed">• 會持續更新功能里程碑與上線時間。</li>
           </ul>
         </section>

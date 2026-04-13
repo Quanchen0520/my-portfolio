@@ -24,7 +24,7 @@ export default function ElevatorTimerModulePage() {
           </div>
           <div className="rounded-xl border border-slate-800 bg-slate-900/40 p-4">
             <p className="text-xs uppercase tracking-wider text-slate-400">Timeline</p>
-            <p className="text-lg font-semibold mt-2">2024</p>
+            <p className="text-lg font-semibold mt-2">2026</p>
           </div>
         </section>
 
@@ -42,9 +42,9 @@ export default function ElevatorTimerModulePage() {
         <section className="rounded-xl border border-slate-800 bg-slate-900/40 p-6">
           <h2 className="text-xl font-bold mb-4">Highlights</h2>
           <ul className="space-y-3 text-slate-300">
-            <li className="leading-relaxed">• 整合感測與計時邏輯，提升電梯門控流程可視性。</li>
-            <li className="leading-relaxed">• 完成模組線路規劃、焊接與測試。</li>
-            <li className="leading-relaxed">• 可依場域需求調整倒數秒數與觸發條件。</li>
+            <li className="leading-relaxed">• 整合mp4播放模組、顯示模組與計時邏輯。</li>
+            <li className="leading-relaxed">• 完成電路模組線路規劃、焊接與測試。</li>
+            <li className="leading-relaxed">• 可依場域需求客製化調整倒數秒數。</li>
           </ul>
         </section>
       </div>

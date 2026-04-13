@@ -125,7 +125,7 @@ export default function AboutPage() {
             
             <div className="space-y-3">
             {/* Email */}
-            <a href="mailto:your-email@example.com" className="flex items-center justify-between p-3 rounded-xl bg-slate-800/30 border border-slate-700/50 hover:bg-slate-800/50 hover:border-sky-500/50 transition-all group/item">
+            <a href="mailto:kevinquan0520@gmail.com" className="flex items-center justify-between p-3 rounded-xl bg-slate-800/30 border border-slate-700/50 hover:bg-slate-800/50 hover:border-sky-500/50 transition-all group/item">
                 <div className="flex items-center gap-3">
                 <div className="p-2 rounded-lg bg-slate-900 text-slate-400 group-hover/item:text-sky-400">
                     <Mail className="w-4 h-4" />
