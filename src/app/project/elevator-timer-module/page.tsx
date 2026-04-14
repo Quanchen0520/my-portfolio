@@ -2,6 +2,8 @@
 
 import Link from 'next/link';
 import { ChevronLeft } from 'lucide-react';
+import Image from 'next/image';
+import './style.css';
 
 export default function ElevatorTimerModulePage() {
   return (
@@ -39,13 +41,40 @@ export default function ElevatorTimerModulePage() {
           </div>
         </section>
 
-        <section className="rounded-xl border border-slate-800 bg-slate-900/40 p-6">
+        <section className="rounded-xl border border-slate-800 bg-slate-900/40 p-6 mb-8">
           <h2 className="text-xl font-bold mb-4">Highlights</h2>
           <ul className="space-y-3 text-slate-300">
-            <li className="leading-relaxed">• 整合mp4播放模組、顯示模組與計時邏輯。</li>
+            <li className="leading-relaxed">• 整合mp4播放模組、顯示模組等...多項模組。</li>
             <li className="leading-relaxed">• 完成電路模組線路規劃、焊接與測試。</li>
             <li className="leading-relaxed">• 可依場域需求客製化調整倒數秒數。</li>
           </ul>
+        </section>
+
+        <section className="rounded-xl border border-slate-800 bg-slate-900/40 p-6 mb-8">
+          <h2 className="text-xl font-bold mb-4">專案預覽</h2>
+          <div className="relative w-full aspect-[16/10] overflow-hidden rounded-lg border border-slate-800">
+            <Image
+              src="/elevator-timer-module/elevator-timer-module_image24.png"
+              alt=" Quan Portfolio 畫面預覽"
+              fill
+              className="object-cover border border-slate-700 rounded-lg"
+              priority
+            />
+          </div>
+          <p className="text-sm text-slate-400 mt-3">顯示模組。</p>
+          
+          <div className="divider" />
+
+          <div className="relative w-full aspect-[16/10] overflow-hidden rounded-lg border border-slate-800">
+            <Image
+              src="/elevator-timer-module/elevator-timer-module_image22.png"
+              alt=" Quan Portfolio 畫面預覽"
+              fill
+              className="object-cover border border-slate-700 rounded-lg"
+              priority
+            />
+          </div>
+          <p className="text-sm text-slate-400 mt-3">核心主機，控制模組。</p>
         </section>
       </div>
     </main>

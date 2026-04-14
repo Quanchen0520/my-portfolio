@@ -1,7 +1,9 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
-import { ChevronLeft, ExternalLink } from 'lucide-react';
+import { ChevronLeft } from 'lucide-react';
+import './style.css';
 
 export default function CertiFlowProPage() {
   return (
@@ -39,13 +41,54 @@ export default function CertiFlowProPage() {
           </div>
         </section>
 
-        <section className="rounded-xl border border-slate-800 bg-slate-900/40 p-6">
+        <section className="rounded-xl border border-slate-800 bg-slate-900/40 p-6 mb-8">
           <h2 className="text-xl font-bold mb-4">Highlights</h2>
           <ul className="space-y-3 text-slate-300">
             <li className="leading-relaxed">• 建立活動證明模板管理流程。</li>
             <li className="leading-relaxed">• 串接 Google Apps Script 進行資料處理與自動產出。</li>
             <li className="leading-relaxed">• 優化使用者操作流程，降低手動發證時間。</li>
           </ul>
+        </section>
+
+        <section className="rounded-xl border border-slate-800 bg-slate-900/40 p-6 mb-8">
+          <h2 className="text-xl font-bold mb-4">專案預覽</h2>
+          <div className="relative w-full aspect-[16/10] overflow-hidden rounded-lg border border-slate-800">
+            <Image
+              src="/certiflow-pro_image/certiflow-pro_image1.png"
+              alt="CertiFlow Pro 畫面預覽"
+              fill
+              className="object-cover border border-slate-700 rounded-lg"
+              priority
+            />
+          </div>
+          <p className="text-sm text-slate-400 mt-3">首頁，活動查詢頁面。</p>
+          
+          <div className="divider" />
+
+          <div className="relative w-full aspect-[16/10] overflow-hidden rounded-lg border border-slate-800">
+            <Image
+              src="/certiflow-pro_image/certiflow-pro_image2.png"
+              alt="CertiFlow Pro 專案畫面預覽"
+              fill
+              className="object-cover border border-slate-700 rounded-lg"
+              priority
+            />
+          </div>
+          <p className="text-sm text-slate-400 mt-3">後台登入頁面。</p>
+
+          <div className="divider" />
+
+          <div className="relative w-full aspect-[16/10] overflow-hidden rounded-lg border border-slate-800">
+            <Image
+              src="/certiflow-pro_image/certiflow-pro_image3.png"
+              alt="CertiFlow Pro 專案畫面預覽"
+              fill
+              className="object-cover border border-slate-700 rounded-lg"
+              priority
+            />
+          </div>
+          <p className="text-sm text-slate-400 mt-3">後台控制頁面。</p>
+
         </section>
       </div>
     </main>

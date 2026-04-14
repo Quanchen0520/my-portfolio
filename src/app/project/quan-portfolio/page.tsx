@@ -2,6 +2,8 @@
 
 import Link from 'next/link';
 import { ChevronLeft, Github } from 'lucide-react';
+import Image from 'next/image';
+import './style.css';
 
 export default function QuanPortfolioPage() {
   return (
@@ -39,7 +41,7 @@ export default function QuanPortfolioPage() {
           </div>
         </section>
 
-        <section className="rounded-xl border border-slate-800 bg-slate-900/40 p-6">
+        <section className="rounded-xl border border-slate-800 bg-slate-900/40 p-6 mb-8">
           <h2 className="text-xl font-bold mb-4">Highlights</h2>
           <ul className="space-y-3 text-slate-300">
             <li className="leading-relaxed">• 以動畫與分區資訊強化專案展示體驗。</li>
@@ -57,6 +59,48 @@ export default function QuanPortfolioPage() {
             查看 GitHub Repository
           </a>
         </section>
+        
+        <section className="rounded-xl border border-slate-800 bg-slate-900/40 p-6 mb-8">
+          <h2 className="text-xl font-bold mb-4">專案預覽</h2>
+          <div className="relative w-full aspect-[16/10] overflow-hidden rounded-lg border border-slate-800">
+            <Image
+              src="/quan-portfolio_image/quan-portfolio_image1.png"
+              alt=" Quan Portfolio 畫面預覽"
+              fill
+              className="object-cover border border-slate-700 rounded-lg"
+              priority
+            />
+          </div>
+          <p className="text-sm text-slate-400 mt-3">首頁，基本介紹頁面。</p>
+          
+          <div className="divider" />
+
+          <div className="relative w-full aspect-[16/10] overflow-hidden rounded-lg border border-slate-800">
+            <Image
+              src="/quan-portfolio_image/quan-portfolio_image2.png"
+              alt=" Quan Portfolio 畫面預覽"
+              fill
+              className="object-cover border border-slate-700 rounded-lg"
+              priority
+            />
+          </div>
+          <p className="text-sm text-slate-400 mt-3">個人作品集。</p>
+
+          <div className="divider" />
+
+          <div className="relative w-full aspect-[16/10] overflow-hidden rounded-lg border border-slate-800">
+            <Image
+              src="/quan-portfolio_image/quan-portfolio_image3.png"
+              alt=" Quan Portfolio 畫面預覽"
+              fill
+              className="object-cover border border-slate-700 rounded-lg"
+              priority
+            />
+          </div>
+          <p className="text-sm text-slate-400 mt-3">關於我的個人介紹與經歷。</p>
+
+        </section>
+        
       </div>
     </main>
   );
