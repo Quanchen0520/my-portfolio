@@ -48,7 +48,7 @@ export default function QuanPortfolioPage() {
           </ul>
 
           <a
-            href="https://github.com/Quanchen0520"
+            href="https://github.com/Quanchen0520/my-portfolio"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 mt-6 text-sm text-sky-400 hover:text-sky-300 transition-colors"
