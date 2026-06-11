@@ -52,9 +52,9 @@ export default function ElevatorTimerModulePage() {
 
         <section className="rounded-xl border border-slate-800 bg-slate-900/40 p-6 mb-8">
           <h2 className="text-xl font-bold mb-4">專案預覽</h2>
-          <div className="relative w-full aspect-[16/10] overflow-hidden rounded-lg border border-slate-800">
+          <div className="relative w-full aspect-[16/9] overflow-hidden rounded-lg border border-slate-800">
             <Image
-              src="/elevator-timer-module/elevator-timer-module_image24.png"
+              src="/elevator-timer-module/elevator-timer-module_image1.png"
               alt=" Quan Portfolio 畫面預覽"
               fill
               className="object-cover border border-slate-700 rounded-lg"
@@ -67,7 +67,7 @@ export default function ElevatorTimerModulePage() {
 
           <div className="relative w-full aspect-[16/10] overflow-hidden rounded-lg border border-slate-800">
             <Image
-              src="/elevator-timer-module/elevator-timer-module_image22.png"
+              src="/elevator-timer-module/elevator-timer-module_image2_v2.png"
               alt=" Quan Portfolio 畫面預覽"
               fill
               className="object-cover border border-slate-700 rounded-lg"
