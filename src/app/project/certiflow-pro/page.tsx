@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { ChevronLeft } from 'lucide-react';
+import { ChevronLeft, ExternalLink } from 'lucide-react';
 import './style.css';
 
 export default function CertiFlowProPage() {
@@ -48,6 +48,16 @@ export default function CertiFlowProPage() {
             <li className="leading-relaxed">• 串接 Google Apps Script 進行資料處理與自動產出。</li>
             <li className="leading-relaxed">• 優化使用者操作流程，降低手動發證時間。</li>
           </ul>
+
+          <a
+            href="https://certi-flow-pro.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 mt-6 text-sm text-sky-400 hover:text-sky-300 transition-colors"
+          >
+            <ExternalLink className="w-4 h-4" />
+            查看線上作品
+          </a>
         </section>
 
         <section className="rounded-xl border border-slate-800 bg-slate-900/40 p-6 mb-8">
