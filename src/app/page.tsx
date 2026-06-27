@@ -55,6 +55,7 @@ export default function Portfolio() {
           </span>
           <div className="flex gap-8 text-sm font-medium">
             <a href="#projects" className="hover:text-sky-400 transition-colors">Projects</a>
+            <Link href="/services" className="hover:text-sky-400 transition-colors">Services</Link>
             <Link href="/about" className="hover:text-sky-400 transition-colors">About</Link>
           </div>
         </div>
