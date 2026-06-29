@@ -19,7 +19,7 @@ const websitePackages: Pkg[] = [
   {
     tier: 'Basic',
     name: '單頁形象站',
-    price: 'NT$ 15,000',
+    price: 'NT$ 35,000',
     unit: ' 起',
     feature: false,
     demo: { href: '/demo/dawn-coffee', label: '晨光咖啡 Demo' },
@@ -35,7 +35,7 @@ const websitePackages: Pkg[] = [
   {
     tier: 'Standard',
     name: '多頁企業官網',
-    price: 'NT$ 35,000',
+    price: 'NT$ 60,000',
     unit: ' 起',
     feature: true,
     demo: { href: '/demo/square-studio', label: '方寸設計 Demo' },
@@ -51,7 +51,7 @@ const websitePackages: Pkg[] = [
   {
     tier: 'Premium',
     name: '品牌官網 + CMS',
-    price: 'NT$ 60,000',
+    price: 'NT$ 99,000',
     unit: ' 起',
     feature: false,
     demo: { href: '/demo/botanica', label: '植感生活 Demo' },
