@@ -20,6 +20,14 @@ export default function Portfolio() {
       icon: <Smartphone className="w-5 h-5" />
     },
     {
+      title: "戰鬥陀螺互動計分模組",
+      desc: "利用Arduino Nano結合電路設計，用於戰鬥陀螺對戰分數控制及聲光控制。",
+      tech: ["Arduino", "電路設計", "焊接"],
+      type: "hardware",
+      href: '/project/beyblade-interactive-module',
+      icon: <Cpu className="w-5 h-5" />
+    },
+    {
       title: "電梯倒數計時模組",
       desc: "利用Arduino UNO結合電路設計，用於電梯開關門控制。",
       tech: ["Arduino", "電路設計", "焊接"],
