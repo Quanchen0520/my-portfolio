@@ -28,6 +28,14 @@ export default function Portfolio() {
       icon: <Cpu className="w-5 h-5" />
     },
     {
+      title: "QuanWatchlist",
+      desc: "本地端看盤小工具。",
+      tech: ["Next.js", "Tailwind CSS", "Framer Motion"],
+      type: "web",
+      href: '/project/quan-watchlist',
+      icon: <Compass className="w-5 h-5" />
+    },
+    {
       title: "電梯倒數計時模組",
       desc: "利用Arduino UNO結合電路設計，用於電梯開關門控制。",
       tech: ["Arduino", "電路設計", "焊接"],
