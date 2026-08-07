@@ -2,10 +2,12 @@
 
 import Link from 'next/link';
 import { ChevronLeft } from 'lucide-react';
+import ViewCounter from '@/components/ViewCounter';
 
 export default function BuildingMobilePage() {
   return (
     <main className="min-h-screen bg-[#0F172A] text-slate-200 px-6 py-16">
+      <ViewCounter slug="building-mobile" />
       <div className="max-w-3xl mx-auto">
         <Link href="/" className="inline-flex items-center gap-2 text-sm text-sky-400 hover:text-sky-300 transition-colors">
           <ChevronLeft className="w-4 h-4" />
