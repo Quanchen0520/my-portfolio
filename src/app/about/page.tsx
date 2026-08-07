@@ -130,7 +130,7 @@ export default function AboutPage() {
                 <div className="p-2 rounded-lg bg-slate-900 text-slate-400 group-hover/item:text-sky-400">
                     <Mail className="w-4 h-4" />
                 </div>
-                <span className="text-sm text-slate-400 group-hover/item:text-slate-200">Email Me</span>
+                <span className="text-sm text-slate-400 group-hover/item:text-slate-200">Email</span>
                 </div>
                 <ChevronRight className="w-4 h-4 text-slate-600 group-hover/item:text-sky-400 transition-all" />
             </a>
@@ -141,7 +141,7 @@ export default function AboutPage() {
                 <div className="p-2 rounded-lg bg-slate-900 text-slate-400 group-hover/item:text-white">
                     <Github className="w-4 h-4" />
                 </div>
-                <span className="text-sm text-slate-400 group-hover/item:text-slate-200">GitHub Profile</span>
+                <span className="text-sm text-slate-400 group-hover/item:text-slate-200">GitHub</span>
                 </div>
                 <ExternalLink className="w-3 h-3 text-slate-600 group-hover/item:text-sky-400 transition-all" />
             </a>
@@ -152,7 +152,7 @@ export default function AboutPage() {
               <div className="p-2 rounded-lg bg-slate-900 text-slate-400 group-hover/item:text-pink-400 transition-colors">
                 <Instagram className="w-4 h-4" />
                 </div>
-              <span className="text-sm text-slate-400 group-hover/item:text-slate-200">Instagram Profile</span>
+              <span className="text-sm text-slate-400 group-hover/item:text-slate-200">Instagram</span>
                 </div>
               <ExternalLink className="w-3 h-3 text-slate-600 group-hover/item:text-sky-400 transition-all" />
             </a>
