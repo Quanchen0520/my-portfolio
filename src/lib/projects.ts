@@ -18,7 +18,6 @@ export type Project = {
   icon: string;
   href: string;
   sort_order: number;
-  image_url: string | null;
   role: string | null;
   timeline: string | null;
   highlights: string[];
@@ -27,7 +26,7 @@ export type Project = {
   gallery: GalleryItem[];
 };
 
-const COLUMNS = `id, slug, title, description, tech, type, icon, sort_order, image_url,
+const COLUMNS = `id, slug, title, description, tech, type, icon, sort_order,
   role, timeline, highlights, demo_url, github_url, gallery`;
 
 type ProjectInput = {
@@ -38,7 +37,6 @@ type ProjectInput = {
   type: string;
   icon: string;
   sort_order?: number;
-  image_url?: string | null;
   role?: string | null;
   timeline?: string | null;
   highlights?: string[];
@@ -81,10 +79,10 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
 export async function createProject(input: ProjectInput): Promise<Project> {
   const sql = getSql();
   const rows = (await sql`
-    INSERT INTO projects (slug, title, description, tech, type, icon, sort_order, image_url, role, timeline, highlights, demo_url, github_url, gallery)
+    INSERT INTO projects (slug, title, description, tech, type, icon, sort_order, role, timeline, highlights, demo_url, github_url, gallery)
     VALUES (
       ${input.slug}, ${input.title}, ${input.description}, ${input.tech}, ${input.type}, ${input.icon},
-      ${input.sort_order ?? 0}, ${input.image_url ?? null}, ${input.role ?? null}, ${input.timeline ?? null},
+      ${input.sort_order ?? 0}, ${input.role ?? null}, ${input.timeline ?? null},
       ${input.highlights ?? []}, ${input.demo_url ?? null}, ${input.github_url ?? null},
       ${JSON.stringify(input.gallery ?? [])}
     )
@@ -105,7 +103,6 @@ export async function updateProject(id: number, input: ProjectInput): Promise<Pr
         type = ${input.type},
         icon = ${input.icon},
         sort_order = ${input.sort_order ?? 0},
-        image_url = ${input.image_url ?? null},
         role = ${input.role ?? null},
         timeline = ${input.timeline ?? null},
         highlights = ${input.highlights ?? []},

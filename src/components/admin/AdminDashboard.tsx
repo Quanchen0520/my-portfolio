@@ -16,7 +16,6 @@ type FormState = {
   type: string;
   icon: string;
   sort_order: number;
-  image_url: string | null;
   role: string;
   timeline: string;
   highlightsText: string;
@@ -37,7 +36,6 @@ const EMPTY_FORM: FormState = {
   type: "web",
   icon: "compass",
   sort_order: 0,
-  image_url: null,
   role: "",
   timeline: "",
   highlightsText: "",
@@ -98,7 +96,6 @@ export default function AdminDashboard({
       type: p.type,
       icon: p.icon,
       sort_order: p.sort_order,
-      image_url: p.image_url,
       role: p.role ?? "",
       timeline: p.timeline ?? "",
       highlightsText: p.highlights.join("\n"),
@@ -146,7 +143,18 @@ export default function AdminDashboard({
     }
   }
 
-  async function handleImageSelect(e: React.ChangeEvent<HTMLInputElement>) {
+  function updateGalleryItem(index: number, patch: Partial<GalleryItem>) {
+    setForm((f) => ({
+      ...f,
+      gallery: f.gallery.map((item, i) => (i === index ? { ...item, ...patch } : item)),
+    }));
+  }
+
+  function removeGalleryItem(index: number) {
+    setForm((f) => ({ ...f, gallery: f.gallery.filter((_, i) => i !== index) }));
+  }
+
+  async function handleGalleryFileSelect(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     e.target.value = "";
     if (!file) return;
@@ -158,9 +166,30 @@ export default function AdminDashboard({
         access: "public",
         handleUploadUrl: "/api/upload",
       });
-      setForm((f) => ({ ...f, image_url: blob.url }));
+      const type: GalleryItem["type"] = file.type.startsWith("video/") ? "video" : "image";
+      setForm((f) => ({ ...f, gallery: [...f.gallery, { type, src: blob.url }] }));
     } catch {
-      setError("圖片上傳失敗，請重試");
+      setError("圖片/影片上傳失敗，請重試");
+    } finally {
+      setUploading(false);
+    }
+  }
+
+  async function handlePosterSelect(e: React.ChangeEvent<HTMLInputElement>, index: number) {
+    const file = e.target.files?.[0];
+    e.target.value = "";
+    if (!file) return;
+
+    setUploading(true);
+    setError("");
+    try {
+      const blob = await upload(file.name, file, {
+        access: "public",
+        handleUploadUrl: "/api/upload",
+      });
+      updateGalleryItem(index, { poster: blob.url });
+    } catch {
+      setError("縮圖上傳失敗，請重試");
     } finally {
       setUploading(false);
     }
@@ -192,7 +221,6 @@ export default function AdminDashboard({
       type: form.type,
       icon: form.icon,
       sort_order: Number(form.sort_order) || 0,
-      image_url: form.image_url,
       role: form.role.trim() || null,
       timeline: form.timeline.trim() || null,
       highlights: form.highlightsText
@@ -377,38 +405,67 @@ export default function AdminDashboard({
             )}
           </div>
 
-          <div className="flex flex-col gap-2 text-sm text-slate-400 md:col-span-2">
-            封面圖片
-            <div className="flex items-center gap-4">
-              {form.image_url ? (
-                <div className="relative w-32 h-20 rounded-lg overflow-hidden border border-slate-700 shrink-0">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={form.image_url} alt="封面預覽" className="w-full h-full object-cover" />
-                  <button
-                    type="button"
-                    onClick={() => setForm((f) => ({ ...f, image_url: null }))}
-                    className="absolute top-1 right-1 bg-black/60 hover:bg-red-600 text-white text-xs w-5 h-5 rounded-full grid place-items-center"
-                    aria-label="移除圖片"
+          <div className="flex flex-col gap-3 text-sm text-slate-400 md:col-span-2">
+            作品預覽（截圖／影片，會顯示在詳情頁「專案預覽」區塊）
+            {form.gallery.length > 0 && (
+              <div className="flex flex-col gap-3">
+                {form.gallery.map((item, i) => (
+                  <div
+                    key={i}
+                    className="flex gap-3 items-start bg-slate-800/60 border border-slate-700 rounded-lg p-3"
                   >
-                    ×
-                  </button>
-                </div>
-              ) : (
-                <div className="w-32 h-20 rounded-lg border border-dashed border-slate-700 grid place-items-center text-xs text-slate-600 shrink-0">
-                  尚無圖片
-                </div>
-              )}
-              <label className="cursor-pointer bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg px-4 py-2 text-sm text-slate-200 transition-all">
-                {uploading ? "上傳中..." : form.image_url ? "更換圖片" : "選擇圖片"}
-                <input
-                  type="file"
-                  accept="image/png,image/jpeg,image/webp,image/gif"
-                  onChange={handleImageSelect}
-                  disabled={uploading}
-                  className="hidden"
-                />
-              </label>
-            </div>
+                    <div className="relative w-28 h-20 rounded-md overflow-hidden border border-slate-700 shrink-0 bg-slate-900">
+                      {item.type === "video" ? (
+                        <video src={item.src} poster={item.poster} className="w-full h-full object-cover" muted />
+                      ) : (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={item.src} alt="" className="w-full h-full object-cover" />
+                      )}
+                      <span className="absolute bottom-1 left-1 text-[10px] bg-black/60 px-1.5 py-0.5 rounded text-slate-200">
+                        {item.type === "video" ? "影片" : "圖片"}
+                      </span>
+                    </div>
+                    <div className="flex-1 flex flex-col gap-2">
+                      <input
+                        value={item.caption ?? ""}
+                        onChange={(e) => updateGalleryItem(i, { caption: e.target.value })}
+                        placeholder="說明文字（選填）"
+                        className="bg-slate-800 border border-slate-700 rounded-lg px-3 py-1.5 text-slate-200 outline-none focus:border-sky-500 text-sm"
+                      />
+                      {item.type === "video" && (
+                        <label className="cursor-pointer text-xs text-sky-400 hover:text-sky-300 w-fit">
+                          {item.poster ? "更換影片縮圖" : "上傳影片縮圖（選填）"}
+                          <input
+                            type="file"
+                            accept="image/png,image/jpeg,image/webp,image/gif"
+                            onChange={(e) => handlePosterSelect(e, i)}
+                            disabled={uploading}
+                            className="hidden"
+                          />
+                        </label>
+                      )}
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => removeGalleryItem(i)}
+                      className="text-red-400 hover:text-red-300 text-sm shrink-0"
+                    >
+                      移除
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+            <label className="cursor-pointer bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg px-4 py-2 text-sm text-slate-200 transition-all w-fit">
+              {uploading ? "上傳中..." : "新增圖片或影片"}
+              <input
+                type="file"
+                accept="image/png,image/jpeg,image/webp,image/gif,video/mp4,video/webm,video/quicktime"
+                onChange={handleGalleryFileSelect}
+                disabled={uploading}
+                className="hidden"
+              />
+            </label>
           </div>
 
           <label className="flex flex-col gap-1 text-sm text-slate-400 md:col-span-2">
