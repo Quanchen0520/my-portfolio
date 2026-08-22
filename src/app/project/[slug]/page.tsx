@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
 import { ChevronLeft, ExternalLink, Github } from "lucide-react";
 import ViewCounter from "@/components/ViewCounter";
+import ProjectGallery from "@/components/ProjectGallery";
 import { getProjectBySlug } from "@/lib/projects";
 
 type Params = { params: Promise<{ slug: string }> };
@@ -114,36 +114,7 @@ export default async function ProjectDetailPage({ params }: Params) {
         {gallery.length > 0 && (
           <section className="rounded-xl border border-slate-800 bg-slate-900/40 p-6 mb-8">
             <h2 className="text-xl font-bold mb-4">專案預覽</h2>
-            {gallery.map((item, i) => (
-              <div key={i}>
-                {i > 0 && <div className="divider" />}
-                <div
-                  className={`relative w-full overflow-hidden rounded-lg border border-slate-800 ${
-                    item.type === "video" ? "aspect-[16/9]" : "aspect-[16/10]"
-                  }`}
-                >
-                  {item.type === "video" ? (
-                    <video
-                      src={item.src}
-                      poster={item.poster}
-                      className="w-full h-full object-cover"
-                      controls
-                      playsInline
-                      preload="metadata"
-                    />
-                  ) : (
-                    <Image
-                      src={item.src}
-                      alt={item.alt || title}
-                      fill
-                      className="object-cover border border-slate-700 rounded-lg"
-                      priority={i === 0}
-                    />
-                  )}
-                </div>
-                {item.caption && <p className="text-sm text-slate-400 mt-3">{item.caption}</p>}
-              </div>
-            ))}
+            <ProjectGallery gallery={gallery} title={title} />
           </section>
         )}
       </div>
