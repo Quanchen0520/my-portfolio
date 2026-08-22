@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { isAdminAuthed } from "@/lib/admin-auth";
 import { deleteProject, updateProject } from "@/lib/projects";
+import { parseProjectBody } from "@/lib/project-input";
 
 type Params = { params: Promise<{ id: string }> };
 
@@ -16,22 +17,14 @@ export async function PUT(request: NextRequest, { params }: Params) {
   }
 
   const body = await request.json();
-  const { slug, title, description, tech, type, icon, sort_order } = body;
+  const parsed = parseProjectBody(body);
 
-  if (typeof slug !== "string" || typeof title !== "string") {
+  if (!parsed) {
     return NextResponse.json({ error: "缺少必要欄位" }, { status: 400 });
   }
 
   try {
-    const project = await updateProject(numericId, {
-      slug,
-      title,
-      description: description ?? "",
-      tech: Array.isArray(tech) ? tech : [],
-      type: type ?? "web",
-      icon: icon ?? "compass",
-      sort_order,
-    });
+    const project = await updateProject(numericId, parsed);
 
     if (!project) {
       return NextResponse.json({ error: "找不到專案" }, { status: 404 });

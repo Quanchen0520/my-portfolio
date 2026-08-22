@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { isAdminAuthed } from "@/lib/admin-auth";
 import { createProject, listProjects } from "@/lib/projects";
+import { parseProjectBody } from "@/lib/project-input";
 
 export async function GET() {
   const projects = await listProjects();
@@ -13,22 +14,14 @@ export async function POST(request: NextRequest) {
   }
 
   const body = await request.json();
-  const { slug, title, description, tech, type, icon, sort_order } = body;
+  const parsed = parseProjectBody(body);
 
-  if (typeof slug !== "string" || typeof title !== "string") {
+  if (!parsed) {
     return NextResponse.json({ error: "缺少必要欄位" }, { status: 400 });
   }
 
   try {
-    const project = await createProject({
-      slug,
-      title,
-      description: description ?? "",
-      tech: Array.isArray(tech) ? tech : [],
-      type: type ?? "web",
-      icon: icon ?? "compass",
-      sort_order,
-    });
+    const project = await createProject(parsed);
 
     return NextResponse.json({ project }, { status: 201 });
   } catch (err) {
