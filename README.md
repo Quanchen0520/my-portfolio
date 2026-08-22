@@ -7,9 +7,9 @@
 - 首頁展示個人介紹、頭像與作品集入口，專案卡片資料來自資料庫。
 - 作品集區塊可依 `all / mobile / web / hardware` 篩選專案。
 - About 頁面整理學歷、競賽經歷與聯絡方式。
-- 每個專案都有獨立詳情頁（`/project/[slug]` 動態路由，內容完全由資料庫驅動），包含封面圖片、角色、時程、技術棧、重點說明，以及可選的展示連結／GitHub 連結。
+- 每個專案都有獨立詳情頁（`/project/[slug]` 動態路由，內容完全由資料庫驅動），包含角色、時程、技術棧、重點說明、可選的展示連結／GitHub 連結，以及可上傳圖片／影片的作品預覽 Gallery（圖片可點擊放大瀏覽，支援上一張／下一張與 Esc 關閉）。
 - 各專案詳情頁會記錄瀏覽次數。
-- `/admin` 管理後台：密碼登入後可新增、編輯、刪除首頁專案卡片（含封面圖片上傳，使用 Vercel Blob），並查看各專案瀏覽次數。
+- `/admin` 管理後台：密碼登入後可新增、編輯、刪除首頁專案卡片，並上傳作品預覽圖片／影片（使用 Vercel Blob），查看各專案瀏覽次數。
 - 透過 Lucide icons 與 Framer Motion 提升互動與視覺表現。
 
 ## 技術棧
@@ -21,7 +21,7 @@
 - Framer Motion
 - Lucide React
 - Neon Postgres（透過 Vercel Marketplace 佈署，`@neondatabase/serverless` 存取）
-- Vercel Blob（後台封面圖片上傳與託管，`@vercel/blob` 存取）
+- Vercel Blob（後台作品預覽圖片／影片上傳與託管，`@vercel/blob` 存取）
 
 ## 後端架構
 
@@ -31,7 +31,7 @@
 - `src/lib/views.ts`：各專案瀏覽次數的讀取與累加。
 - `src/lib/admin-auth.ts`：管理後台的 cookie session 驗證（HMAC 簽章，密碼比對用 timing-safe 比較）。
 - `src/app/api/projects/`：專案 CRUD 的 Route Handlers（`GET` 公開讀取，`POST` / `PUT` / `DELETE` 需要登入）。
-- `src/app/api/upload/`：後台封面圖片上傳的 Vercel Blob token 端點（需要登入才會核發權杖）。
+- `src/app/api/upload/`：後台作品預覽圖片／影片上傳的 Vercel Blob token 端點（需要登入才會核發權杖）。
 - `src/app/api/views/[slug]/`：瀏覽次數的讀取與累加 API。
 - `src/app/api/admin/login`、`.../logout`：管理後台登入 / 登出。
 - `scripts/db-init.mjs`：建立資料表（`projects`、`page_views`）並灌入初始資料，可重複執行。
@@ -46,6 +46,7 @@
 - `src/app/admin/page.tsx`：管理後台（未登入顯示登入表單，登入後顯示 CRUD 介面）。
 - `src/app/api/`：後端 Route Handlers。
 - `src/components/ProjectsSection.tsx`：首頁專案篩選與卡片渲染。
+- `src/components/ProjectGallery.tsx`：專案詳情頁的圖片／影片預覽區塊，圖片可點擊放大並支援上一張／下一張切換。
 - `src/components/ViewCounter.tsx`：埋在專案詳情頁裡的瀏覽次數計數元件。
 - `src/components/admin/`：管理後台的登入表單與 CRUD 介面。
 - `src/lib/`：資料庫與驗證邏輯。
